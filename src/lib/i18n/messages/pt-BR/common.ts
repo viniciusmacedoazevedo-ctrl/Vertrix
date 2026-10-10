@@ -38,6 +38,18 @@ export const common = {
   retry: "Tentar novamente",
   priority: { low: "Baixa", medium: "Média", high: "Alta" },
   locales: { "pt-BR": "Português (Brasil)", en: "English" },
+  setup: {
+    title: "Configuração necessária",
+    body: "O VELTRIX precisa de um projeto Supabase para autenticação e banco de dados. As variáveis abaixo não foram encontradas no servidor.",
+    missing: "Variáveis ausentes",
+    localTitle: "Ambiente local ou GitHub Codespaces",
+    remoteTitle: "Projeto Supabase na nuvem",
+    remoteBody: "Copie a Project URL e a anon key em Supabase → Project Settings → API para o arquivo .env.local (ou para as variáveis do seu provedor de hospedagem) e reinicie o servidor.",
+    restart: "Depois de configurar, reinicie o servidor (Ctrl+C e npm run dev).",
+    docs: "Guia completo: docs/SETUP.md",
+    ready: "Configuração encontrada. Você já pode usar a aplicação.",
+    goHome: "Ir para o início",
+  },
   errorPage: {
     title: "Algo deu errado",
     body: "Não foi possível carregar esta página. Tente novamente em instantes.",

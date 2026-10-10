@@ -6,6 +6,7 @@ import type { Tables } from "@/lib/supabase/database.types";
 import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n/config";
 import { getMessages, type Messages } from "@/lib/i18n/messages";
 import { AppError } from "@/lib/errors";
+import { missingConfig } from "@/lib/env";
 
 export type Organization = Tables<"organizations">;
 export type Profile = Tables<"profiles">;
@@ -23,6 +24,9 @@ export interface AppContext {
 
 /** Validated session user (verified with the auth server), or null. */
 export const getSessionUser = cache(async () => {
+  // Without Supabase configured, public pages still render (the middleware sends
+  // private routes to /setup, so callers never use the client in that case).
+  if (missingConfig().length > 0) return { supabase: null as unknown as AppSupabaseClient, user: null };
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getUser();
   if (error || !data.user) return { supabase, user: null };

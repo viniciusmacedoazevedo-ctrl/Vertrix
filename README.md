@@ -33,10 +33,23 @@ Pré-requisitos: Node.js 20.9+, Docker (para o Supabase local).
 ```bash
 npm install
 npx supabase start            # sobe Postgres, Auth e API locais e aplica as migrações
-cp .env.example .env.local    # preencha NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY
-                              # com os valores exibidos por `npx supabase status`
+npm run setup:env             # gera .env.local a partir do Supabase local (detecta Codespaces)
 npm run dev                   # http://localhost:3000
 ```
+
+Se as variáveis do Supabase não estiverem configuradas, o site público continua funcionando e as áreas que dependem do banco mostram a página **/setup** com o que falta.
+
+### GitHub Codespaces
+
+O repositório inclui `.devcontainer/` com Node 22 e Docker. Ao abrir um Codespace:
+
+```bash
+npx supabase start     # primeira vez baixa as imagens (alguns minutos)
+npm run setup:env      # usa a URL pública do Codespace como NEXT_PUBLIC_SITE_URL
+npm run dev
+```
+
+Abra a porta **3000** pela aba *Ports*. Formulários (Server Actions) já aceitam o domínio `*.app.github.dev` do Codespace.
 
 Para habilitar o assistente de IA, defina `ANTHROPIC_API_KEY` em `.env.local` e reinicie. Sem a chave, a aplicação funciona normalmente e a tela do assistente explica como habilitá-lo.
 

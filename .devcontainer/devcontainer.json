@@ -1,0 +1,16 @@
+{
+  "name": "VELTRIX",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": { "cpus": 4, "memory": "8gb" },
+  "postCreateCommand": "npm install",
+  "forwardPorts": [3000, 54321, 54323, 54324],
+  "portsAttributes": {
+    "3000": { "label": "VELTRIX", "onAutoForward": "openBrowser" },
+    "54321": { "label": "Supabase API" },
+    "54323": { "label": "Supabase Studio" },
+    "54324": { "label": "E-mails (Mailpit)" }
+  }
+}

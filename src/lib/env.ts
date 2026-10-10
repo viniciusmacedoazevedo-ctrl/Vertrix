@@ -23,9 +23,21 @@ type ServerEnv = {
 
 let cached: ServerEnv | null = null;
 
+/** Public URL of a GitHub Codespace forwarding port 3000, when running inside one. */
+export function codespaceUrl(): string | null {
+  const name = process.env.CODESPACE_NAME;
+  const domain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN;
+  return name && domain ? `https://${name}-3000.${domain}` : null;
+}
+
+/** Names of required variables that are missing (never their values). */
+export function missingConfig(): string[] {
+  return ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY"].filter((k) => !process.env[k]?.trim());
+}
+
 export function getServerEnv(): ServerEnv {
   if (cached) return cached;
-  const parsed = schema.safeParse(process.env);
+  const parsed = schema.safeParse({ ...process.env, NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || codespaceUrl() || undefined });
   if (!parsed.success) {
     const missing = parsed.error.issues.map((i) => i.path.join(".")).join(", ");
     throw new Error(`Invalid environment configuration: ${missing}. See .env.example.`);

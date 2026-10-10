@@ -60,7 +60,17 @@ Nunca edite uma migração já aplicada em produção: crie uma nova.
 
 O assistente usa somente ferramentas de leitura, executadas com a sessão do usuário (RLS). Em caso de recusa do modelo, a chamada usa o *fallback* do lado do servidor quando o modelo suporta. Os custos de uso são do titular da chave.
 
-## 4. Deploy
+## 4. GitHub Codespaces
+
+1. Crie o Codespace a partir da branch (o `.devcontainer/` instala Node 22 e Docker).
+2. No terminal: `npx supabase start`, depois `npm run setup:env` e `npm run dev`.
+3. Abra a porta 3000 na aba **Ports**.
+
+`setup:env` grava `NEXT_PUBLIC_SITE_URL=https://<codespace>-3000.app.github.dev`, usado nos links de e-mail; `supabase/config.toml` já permite redirecionamentos para `*.app.github.dev`. A origem do Codespace é liberada automaticamente para Server Actions (`next.config.ts`). Para outros proxies, use `SERVER_ACTIONS_ALLOWED_ORIGINS=dominio1,dominio2`.
+
+Se aparecer "Algo deu errado", veja o terminal do `npm run dev`: o código `ref` da tela corresponde ao erro registrado ali.
+
+## 5. Deploy
 
 Qualquer hospedagem compatível com Next.js 15 (Vercel, Render, Fly.io, Docker com `next start`).
 

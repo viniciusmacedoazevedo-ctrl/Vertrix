@@ -40,6 +40,18 @@ export const common: Messages["common"] = {
   retry: "Try again",
   priority: { low: "Low", medium: "Medium", high: "High" },
   locales: { "pt-BR": "Português (Brasil)", en: "English" },
+  setup: {
+    title: "Setup required",
+    body: "VELTRIX needs a Supabase project for authentication and the database. The variables below were not found on the server.",
+    missing: "Missing variables",
+    localTitle: "Local environment or GitHub Codespaces",
+    remoteTitle: "Hosted Supabase project",
+    remoteBody: "Copy the Project URL and anon key from Supabase → Project Settings → API into .env.local (or your hosting provider's environment variables) and restart the server.",
+    restart: "After configuring, restart the server (Ctrl+C and npm run dev).",
+    docs: "Full guide: docs/SETUP.md",
+    ready: "Configuration found. You can use the app now.",
+    goHome: "Go to home",
+  },
   errorPage: {
     title: "Something went wrong",
     body: "We couldn't load this page. Please try again in a moment.",

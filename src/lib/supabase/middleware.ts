@@ -10,7 +10,16 @@ export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return response;
+  if (!url || !key) {
+    const needsBackend = [...PROTECTED_PREFIXES, ...AUTH_PAGES, "/forgot-password", "/reset-password", "/book", "/auth"].some(
+      (p) => request.nextUrl.pathname === p || request.nextUrl.pathname.startsWith(`${p}/`),
+    );
+    if (!needsBackend) return response;
+    const redirect = request.nextUrl.clone();
+    redirect.pathname = "/setup";
+    redirect.search = "";
+    return NextResponse.redirect(redirect);
+  }
 
   const supabase = createServerClient<Database>(url, key, {
     cookies: {
