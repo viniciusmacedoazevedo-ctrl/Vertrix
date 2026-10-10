@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/*
+ * VELTRIX design tokens. Change the brand here; components only reference tokens.
+ */
+@theme {
+  --color-bg: #05070d;
+  --color-bg-elevated: #080c16;
+  --color-surface: #0d1320;
+  --color-surface-2: #121a2b;
+  --color-surface-3: #19233a;
+  --color-border: #1c263b;
+  --color-border-strong: #2a3756;
+  --color-fg: #f3f6fc;
+  --color-fg-muted: #a6b0c6;
+  --color-fg-subtle: #6e7a95;
+  --color-accent: #2f7bff;
+  --color-accent-strong: #1f63e6;
+  --color-accent-fg: #ffffff;
+  --color-accent-soft: rgb(47 123 255 / 0.12);
+  --color-accent-glow: rgb(47 123 255 / 0.35);
+  --color-success: #2fbf8a;
+  --color-success-soft: rgb(47 191 138 / 0.12);
+  --color-warning: #f2b23a;
+  --color-warning-soft: rgb(242 178 58 / 0.12);
+  --color-danger: #f0596b;
+  --color-danger-soft: rgb(240 89 107 / 0.12);
+  --color-info: #6cc4ff;
+  --color-info-soft: rgb(108 196 255 / 0.12);
+  /* Categorical chart series (validated for dark surface, CVD-safe). */
+  --color-chart-1: #3d86ff;
+  --color-chart-2: #b57c14;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-card: 0.875rem;
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-glow: 0 0 0 1px rgb(47 123 255 / 0.4), 0 8px 32px -8px rgb(47 123 255 / 0.45);
+
+  --animate-fade-in: fade-in 0.35s ease-out both;
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-accent-glow);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Subtle grid backdrop used on marketing surfaces. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%);
+}

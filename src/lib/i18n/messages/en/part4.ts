@@ -1,0 +1,96 @@
+import type { Messages } from "../index";
+
+export const settings: Messages["settings"] = {
+  title: "Settings",
+  subtitle: "Company, profile and preferences.",
+  tabs: { organization: "Company", profile: "Profile", plan: "Plan and usage", integrations: "Integrations", privacy: "Data and privacy" },
+  organization: {
+    title: "Company details",
+    name: "Company name",
+    segment: "Industry",
+    country: "Country",
+    locale: "Default language",
+    currency: "Currency",
+    timezone: "Time zone",
+    modules: "Active modules",
+    followupStaleDays: "Consider an opportunity stalled after (days without interaction)",
+    readOnly: "Only owners and admins can change these settings.",
+    publicLink: "Public address",
+  },
+  profile: {
+    title: "Your profile",
+    fullName: "Name",
+    email: "Email",
+    locale: "Interface language",
+    emailDigest: "Send me email digests when this feature becomes available",
+    role: "Role in the company",
+    roles: { owner: "Owner", admin: "Admin", member: "Member" },
+  },
+  plan: {
+    title: "Current plan",
+    current: "Your company is on the {plan} plan.",
+    billingNotice: "Subscription billing isn't available yet. Nothing is charged.",
+    limits: "Plan limits",
+    aiMessages: "Assistant messages per day",
+    members: "Users",
+    usageToday: "Assistant usage today",
+  },
+  integrations: {
+    title: "Integrations",
+    body: "Connections to external services will be added over time. Nothing leaves the platform without explicit configuration and authorization.",
+    statusNotConfigured: "Not configured",
+    statusConfigured: "Configured",
+    statusPlanned: "Planned",
+    items: {
+      ai: { name: "AI assistant", body: "Language model provider configured by the platform administrator." },
+      email: { name: "Email", body: "Sending messages and reminders with authorization." },
+      whatsapp: { name: "WhatsApp Business Platform", body: "Reminders and messages through the official API." },
+      calendar: { name: "Calendars", body: "Sync with Google Calendar and Outlook." },
+      payments: { name: "Payments", body: "Billing and subscriptions." },
+    },
+  },
+  privacy: {
+    title: "Data and privacy",
+    body: "Your data belongs to your company. You can export it from Reports and request deletion at any time.",
+    retention: "Data is stored for as long as the company exists. Assistant conversations can be deleted individually. Deleting the company permanently erases all linked data (customers, opportunities, tasks, appointments, conversations and logs).",
+    deleteTitle: "Delete company",
+    deleteBody: "This is permanent and cannot be undone. Type the company name to confirm.",
+    deleteConfirmLabel: "Company name",
+    deleteButton: "Permanently delete company",
+    deleteMismatch: "The name you typed doesn't match.",
+    ownerOnly: "Only the owner can delete the company.",
+    accountDeletion: "To delete your user account, contact the platform's support.",
+  },
+};
+
+export const legal: Messages["legal"] = {
+  privacy: {
+    title: "Privacy policy",
+    updated: "Last updated: October 2026",
+    disclaimer:
+      "This document is an initial template and must be reviewed by legal counsel before commercial use. VELTRIX does not claim any certified legal compliance.",
+    sections: [
+      { h: "Who we are", p: "VELTRIX is a software platform for managing a company's customers, opportunities, tasks and appointments. Each customer company controls the data it enters; the platform processes that data on its behalf." },
+      { h: "Data we process", p: "Account data (name, email and a hashed password), data companies record about their customers (such as name, email, phone and notes), usage logs needed for security, and messages sent to the AI assistant." },
+      { h: "Purposes", p: "Providing the service, keeping accounts secure, preventing abuse and meeting legal obligations. We do not sell personal data." },
+      { h: "AI assistant", p: "When the assistant is enabled, questions and the data excerpts needed to answer them are sent to an AI model provider for processing. Context is limited to the authenticated user's company data." },
+      { h: "Sharing", p: "We use infrastructure providers (hosting and database) and, when enabled, an AI provider. These vendors process data only to operate the service." },
+      { h: "Retention and deletion", p: "Data is kept while the account or company exists. Companies can delete their data at any time in settings; deletion is permanent." },
+      { h: "Your rights (LGPD and PIPEDA)", p: "You may request access, correction, portability and deletion of your data, and information about how it is processed. People whose data was entered by a company should contact that company, which is the controller." },
+      { h: "Security", p: "We apply per-company data isolation, server- and database-level access control, encryption in transit and logging of relevant events." },
+      { h: "Contact", p: "For privacy matters, use the contact channel provided by the platform operator." },
+    ],
+  },
+  terms: {
+    title: "Terms of use",
+    updated: "Last updated: October 2026",
+    disclaimer: "This document is an initial template and must be reviewed by legal counsel before commercial use.",
+    sections: [
+      { h: "Acceptance", p: "By creating an account, you agree to these terms and to the privacy policy." },
+      { h: "Using the platform", p: "You are responsible for the information you enter and for obtaining the authorizations needed to process your customers' data." },
+      { h: "AI assistant", p: "Assistant answers are generated automatically and may contain mistakes. Decisions and communications with customers are the user's responsibility." },
+      { h: "Availability", p: "We make reasonable efforts to keep the service available, without guaranteeing uninterrupted operation. We do not guarantee commercial or financial results." },
+      { h: "Termination", p: "You can stop using the service and delete your company's data at any time." },
+    ],
+  },
+};
