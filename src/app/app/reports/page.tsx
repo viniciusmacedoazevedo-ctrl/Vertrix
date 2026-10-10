@@ -7,7 +7,7 @@ import { param } from "@/lib/page";
 import { PageHeader } from "@/components/ui/page-header";
 import { Button, LinkButton } from "@/components/ui/button";
 import { Card, CardBody, CardHeader } from "@/components/ui/card";
-import { inputClasses } from "@/components/ui/form";
+import { inputClasses } from "@/components/ui/styles";
 import { BarList } from "@/components/charts/bar-list";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -77,7 +77,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
             <CardBody className="space-y-6">
               <div className="grid gap-3 sm:grid-cols-3">
                 <Metric label={r.sales.openValue} value={money(report.sales.openValue)} hint={`${n(report.sales.openCount)} · ${r.sales.openValueHint}`} />
-                <Metric label={r.sales.wonValue} value={money(report.sales.wonValue)} hint={n(report.sales.wonCount)} />
+                <Metric label={r.sales.wonValue} value={money(report.sales.wonValue)} hint={`${r.sales.count}: ${n(report.sales.wonCount)}`} />
                 <Metric label={r.sales.followUps} value={n(report.sales.followUps)} hint={r.sales.followUpsHint} />
               </div>
               <div>

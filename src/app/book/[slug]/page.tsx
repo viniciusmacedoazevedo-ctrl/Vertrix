@@ -28,7 +28,7 @@ export default async function PublicBookingPage({ params }: { params: Promise<{ 
           {page && dates ? (
             <>
               <header className="mb-8">
-                <p className="text-xs font-medium uppercase tracking-wider text-accent">{t.booking.steps.time}</p>
+                <p className="text-xs font-medium uppercase tracking-wider text-accent">{t.nav.scheduling}</p>
                 <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{page.organization.name}</h1>
               </header>
               <BookingFlow page={page} firstDate={dates.first} lastDate={dates.last} />

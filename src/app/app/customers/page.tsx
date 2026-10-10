@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { FilterTabs, withParams } from "@/components/ui/filter-tabs";
-import { inputClasses } from "@/components/ui/form";
+import { inputClasses } from "@/components/ui/styles";
 import { formatDate } from "@/lib/domain/format";
 import { format } from "@/lib/i18n/config";
 import { param } from "@/lib/page";

@@ -6,6 +6,9 @@ import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { IDLE, type ActionState } from "@/lib/action-state";
 import { cn } from "@/lib/cn";
 import { Button } from "./button";
+import { inputBase, inputClasses } from "./styles";
+
+export { inputClasses };
 
 type Action = (state: ActionState, formData: FormData) => Promise<ActionState>;
 
@@ -96,8 +99,6 @@ export function SubmitButton({
   );
 }
 
-const inputBase =
-  "w-full rounded-lg border bg-bg-elevated px-3 text-sm text-fg placeholder:text-fg-subtle transition-colors outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 disabled:opacity-60";
 
 export function Field({
   label,
@@ -230,6 +231,3 @@ export function CheckboxField({ label, name, className, ...props }: Omit<Compone
     </div>
   );
 }
-
-export const inputClasses = (invalid = false) =>
-  cn(inputBase, "h-10", invalid ? "border-danger/60" : "border-border-strong");

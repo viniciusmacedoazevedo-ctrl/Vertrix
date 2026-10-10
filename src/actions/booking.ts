@@ -21,7 +21,7 @@ export async function createPublicBookingAction(slug: string, _prev: ActionState
     const result = await createPublicBooking({ slug, ...parsed.data });
     return { status: "success", data: { id: result.id, startsAt: result.starts_at } };
   } catch (error) {
-    if (error instanceof AppError && error.code === "slot_conflict") return { status: "error", message: t.booking.slotTaken, data: undefined } as ActionState;
+    if (error instanceof AppError && error.code === "slot_conflict") return { status: "error", message: t.booking.slotTaken };
     return toErrorState(error, t, "booking.create_failed");
   }
 }

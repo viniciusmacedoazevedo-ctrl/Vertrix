@@ -106,8 +106,10 @@ export default async function AppointmentPage({ params, searchParams }: { params
                 <CalendarClock className="size-4 text-fg-subtle" aria-hidden />
                 <span className="flex-1">
                   {h.type === "appointment_status_changed"
-                    ? format(t.activity.appointment_status_changed, { status: t.scheduling.status[(h.metadata as { to: "scheduled" }).to] ?? "" })
-                    : t.activity[h.type as "appointment_created"]}
+                    ? t.scheduling.status[(h.metadata as { to: "scheduled" }).to] ?? ""
+                    : h.type === "appointment_created"
+                      ? l.createdNotice
+                      : l.updatedNotice}
                 </span>
                 <time className="text-xs text-fg-subtle">{formatDateTime(h.created_at, locale, org.timezone)}</time>
               </li>

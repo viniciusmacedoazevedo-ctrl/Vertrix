@@ -7,7 +7,7 @@ import { addDays, isoWeekday, localDateOf, localMinutesOf, minutesToTime, type D
 import { formatCalendarDate, formatTime } from "@/lib/domain/format";
 import { cn } from "@/lib/cn";
 
-const HOUR_PX = 56;
+const HOUR_PX = 60;
 
 const statusStyles: Record<string, string> = {
   scheduled: "border-l-info bg-info-soft",
@@ -110,12 +110,23 @@ function Column({
             style={{ top, height, left: `calc(${(lane / lanes) * 100}% + 2px)`, width: `calc(${100 / lanes}% - 4px)` }}
             title={`${formatTime(item.starts_at, locale, timeZone)} · ${item.customer?.full_name} · ${item.service?.name}`}
           >
-            <span className="block font-mono text-[10.5px] text-fg-muted">{formatTime(item.starts_at, locale, timeZone)}</span>
-            <span className="block truncate font-medium text-fg">{item.customer?.full_name}</span>
-            <span className="block truncate text-fg-subtle">
-              {item.service?.name}
-              {showProfessional && item.professional ? ` · ${item.professional.name}` : ""}
-            </span>
+            {height < 34 ? (
+              <span className="block truncate">
+                <span className="font-mono text-[10.5px] text-fg-muted">{formatTime(item.starts_at, locale, timeZone)}</span>{" "}
+                <span className="font-medium text-fg">{item.customer?.full_name}</span>
+              </span>
+            ) : (
+              <>
+                <span className="block truncate">
+                  <span className="font-mono text-[10.5px] text-fg-muted">{formatTime(item.starts_at, locale, timeZone)}</span>{" "}
+                  <span className="font-medium text-fg">{item.customer?.full_name}</span>
+                </span>
+                <span className="block truncate text-fg-subtle">
+                  {item.service?.name}
+                  {showProfessional && item.professional ? ` · ${item.professional.name}` : ""}
+                </span>
+              </>
+            )}
             <span className="sr-only">{t.scheduling.status[item.status]}</span>
           </Link>
         );

@@ -14,7 +14,7 @@ import { Button, LinkButton } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { FilterTabs, withParams } from "@/components/ui/filter-tabs";
-import { inputClasses } from "@/components/ui/form";
+import { inputClasses } from "@/components/ui/styles";
 import { PriorityBadge, StageBadge } from "@/components/shared/badges";
 import { FollowUpBadge } from "@/components/opportunities/follow-up-badge";
 import { StageSelect } from "@/components/opportunities/stage-select";
@@ -138,7 +138,7 @@ export default async function OpportunitiesPage({ searchParams }: { searchParams
                         <p className="mt-0.5 truncate text-xs text-fg-subtle">{o.customer?.full_name}</p>
                         {o.estimated_value !== null && <p className="mt-2 text-xs tabular-nums text-fg-muted">{formatMoney(o.estimated_value, org.currency, locale)}</p>}
                         <div className="mt-2"><FollowUpBadge opportunity={o} staleDays={org.followup_stale_days} timeZone={org.timezone} t={t} /></div>
-                        <StageSelect id={o.id} stage={o.stage} className="mt-2" />
+                        <StageSelect id={o.id} stage={o.stage} className="mt-2 flex w-full" />
                       </li>
                     ))}
                   </ul>

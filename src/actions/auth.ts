@@ -12,8 +12,11 @@ import { clientIp, memoryRateLimit } from "@/lib/rate-limit";
 import { safeNextPath } from "@/lib/safe-redirect";
 import { logger } from "@/lib/logger";
 
+/** Per-IP attempts per 10 minutes. AUTH_RATE_LIMIT_MULTIPLIER raises limits for automated test environments. */
+const multiplier = Math.max(1, Number(process.env.AUTH_RATE_LIMIT_MULTIPLIER) || 1);
+
 async function guard(scope: string, limit: number) {
-  return memoryRateLimit(`${scope}:${await clientIp()}`, limit, 10 * 60_000);
+  return memoryRateLimit(`${scope}:${await clientIp()}`, limit * multiplier, 10 * 60_000);
 }
 
 export async function signInAction(_prev: ActionState, formData: FormData): Promise<ActionState> {

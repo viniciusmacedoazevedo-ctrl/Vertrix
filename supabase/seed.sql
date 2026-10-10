@@ -1,0 +1,2 @@
+-- Intentionally empty: VELTRIX does not ship fake demo data.
+-- Create an account through the app (or the API) to get real records.

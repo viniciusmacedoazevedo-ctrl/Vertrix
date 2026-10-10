@@ -11,7 +11,7 @@ import { Button, LinkButton } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { FilterTabs, withParams } from "@/components/ui/filter-tabs";
-import { inputClasses } from "@/components/ui/form";
+import { inputClasses } from "@/components/ui/styles";
 import { DayView, hourBounds, MonthView, WeekView } from "@/components/schedule/calendar";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -109,7 +109,7 @@ export default async function SchedulePage({ searchParams }: { searchParams: Pro
           <LinkButton href={withParams("/app/schedule", current, { date: next })} variant="outline" size="icon" aria-label={t.common.next}>
             <ChevronRight className="size-4" aria-hidden />
           </LinkButton>
-          <h2 className="ml-2 text-sm font-semibold capitalize sm:text-base">{title}</h2>
+          <h2 className="ml-2 text-sm font-semibold first-letter:uppercase sm:text-base">{title}</h2>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <FilterTabs
